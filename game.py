@@ -5,10 +5,8 @@ def playGame():
     x = 0 
     y = 0 
     cardsArr = {"as":11, "dwojka": 2, "trojka": 3, "czworka": 4, "piatka": 5, "szostka": 6, "siodemka": 7, "osemka": 8, "dziewiatka": 9, "dziesiatka": 10, "walet": 10, "dama": 10, "krol": 10}
-    tab = [];
-    
-    def chance(): 
-         
+    tab = []
+    tab2= []
     def get_key(val):
         for key, value in cardsArr.items():
             if val == value:
@@ -19,25 +17,15 @@ def playGame():
             if x == 0:
                 card1 = random.choice(list(cardsArr.values()))
                 card2 = random.choice(list(cardsArr.values()))
-                botCard1 = random.choice(list(cardsArr.values()))
-                botCard2 = random.choice(list(cardsArr.values()))
-            
+                value = random.randint(0,1)
+                
             # rand = random.randint(1, 13)
                 cardSum = card1 + card2
-                botCardSum = botCard1 + botCard2
-
-                if (botCardSum < 17):
-                    botCard1 = random.choice(list(cardsArr.values()))
-                    botCard2 = random.choice(list(cardsArr.values()))
-                    botCardSum = botCard1 + botCard2
                 
                 if card1 + card2 < 21:
-                    print ("Wylosowałeś: " + get_key(card1) + " i " + get_key(card2) + " co oznacza, że masz " + str(cardSum) + " punktów")
-                    print ("Przeciwnik wylosował: " + get_key(botCard1) + " i " + " KARTE " + " co oznacza, że ma " + str(botCardSum) + " punktów")
-                    y = 1
-                    if botCardSum == 21:
-                        print("Przegrałeś, przeciwnik ma blackjacka!")
-                        break
+                    print ("Wylosowałeś: " + get_key(card1) + " i " + get_key(card2) + " co oznacza, że masz " + str(cardSum) + " punktów") 
+                y = 1
+                    
                 tab.append(card1)
                 tab.append(card2)
 
@@ -71,6 +59,25 @@ def playGame():
                 else: 
                     x = 1
             elif answer == "n":
+                
+                while(True):
+                    
+                    match value:
+                        case 0:
+                            break
+                        case 1:
+                            if z == 1:
+                                botCard3 = random.choice(list(cardsArr.values()))
+                            botCard1 = random.choice(list(cardsArr.values()))
+                            botCard2 = random.choice(list(cardsArr.values()))
+                            global botCardSum
+                            botCardSum = botCard1 + botCard2
+                            tab2.append(botCard1)
+                            tab2.append(botCard2)
+                            z = 1
+                            
+                
+                print("Bot wylosował: ", tab2)
                 if cardSum > botCardSum:
                     print("Wygrałeś!")
                     break
@@ -80,8 +87,8 @@ def playGame():
                 elif cardSum == botCardSum:
                     print("Remis!")
                     break
+                
             
-           
             # print(get_key(11))
             # input(card1)
         except ValueError:
